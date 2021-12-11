@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 41cc4e78639af222c0f340e08b6bf64d1469cd8c
+PODS:
+  - AppleDownloadButton (0.1.0)
+
+DEPENDENCIES:
+  - AppleDownloadButton (from `../`)
+
+EXTERNAL SOURCES:
+  AppleDownloadButton:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AppleDownloadButton: 88a4c39dc51e20a294e6c21a2762ff0880fa641b
+
+PODFILE CHECKSUM: 6a95f23b9721060fa58157c172b6f96494f23f0d
 
 COCOAPODS: 1.11.2

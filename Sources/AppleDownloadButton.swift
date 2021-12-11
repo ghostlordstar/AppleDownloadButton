@@ -1,6 +1,6 @@
 //
-//  NFDownloadButton.swift
-//  NFDownloadButton
+//  AppleDownloadButton.swift
+//  AppleDownloadButton
 //
 //  Created by Leonardo Cardoso on 20/05/2017.
 //  Copyright © 2017 leocardz.com. All rights reserved.
@@ -163,7 +163,7 @@ public class StyleKit: NSObject {
 
     }
 
-    public static func drawDownloadCompleteState(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 50, height: 50), resizing: ResizingBehavior = .aspectFit, palette: Palette, style: NFDownloadButtonStyle, downloadedManipulable: CGFloat = 0) {
+    public static func drawDownloadCompleteState(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 50, height: 50), resizing: ResizingBehavior = .aspectFit, palette: Palette, style: AppleDownloadButtonStyle, downloadedManipulable: CGFloat = 0) {
         // General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -360,7 +360,7 @@ public class StyleKit: NSObject {
 
     }
 
-    public static func drawCheckState(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 50, height: 50), resizing: ResizingBehavior = .aspectFit, palette: Palette, style: NFDownloadButtonStyle, downloadedManipulable: CGFloat = 0, checkRevealManipulable: CGFloat = 0) {
+    public static func drawCheckState(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 50, height: 50), resizing: ResizingBehavior = .aspectFit, palette: Palette, style: AppleDownloadButtonStyle, downloadedManipulable: CGFloat = 0, checkRevealManipulable: CGFloat = 0) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -1060,19 +1060,19 @@ open class Palette {
 
 }
 
-public enum NFDownloadButtonStyle: String {
+public enum AppleDownloadButtonStyle: String {
 
     case iOS = "iOS", macOS = "macOS", watchOS = "watchOS", tvOS = "tvOS"
 
 }
 
-public enum NFDownloadButtonState: String {
+public enum AppleDownloadButtonState: String {
 
     case toDownload = "toDownload", willDownload = "willDownload", readyToDownload = "readyToDownload", downloaded = "downloaded"
 
 }
 
-class NFDownloadButtonLayer: CALayer {
+class AppleDownloadButtonLayer: CALayer {
 
     // MARK: - Properties
     @NSManaged var toDownloadManipulable: CGFloat
@@ -1100,7 +1100,7 @@ class NFDownloadButtonLayer: CALayer {
 
         super.init(layer: layer)
 
-        if let layer = layer as? NFDownloadButtonLayer {
+        if let layer = layer as? AppleDownloadButtonLayer {
 
             toDownloadManipulable = layer.toDownloadManipulable
             rippleManipulable = layer.rippleManipulable
@@ -1124,7 +1124,7 @@ class NFDownloadButtonLayer: CALayer {
 
         guard let key = key else { return false }
 
-        if NFDownloadButtonLayer.isCompatible(key) {
+        if AppleDownloadButtonLayer.isCompatible(key) {
 
             return true
 
@@ -1138,7 +1138,7 @@ class NFDownloadButtonLayer: CALayer {
 
         guard let event = event else { return nil }
 
-        if NFDownloadButtonLayer.isCompatible(event) {
+        if AppleDownloadButtonLayer.isCompatible(event) {
 
             let animation = CABasicAnimation.init(keyPath: event)
             animation.fromValue = presentation()?.value(forKey: event)
@@ -1164,15 +1164,15 @@ class NFDownloadButtonLayer: CALayer {
 
 }
 
-public protocol NFDownloadButtonDelegate {
+public protocol AppleDownloadButtonDelegate {
 
-    func stateChanged(button: NFDownloadButton, newState: NFDownloadButtonState)
+    func stateChanged(button: AppleDownloadButton, newState: AppleDownloadButtonState)
 
 }
 
 
 @IBDesignable
-open class NFDownloadButton: UIButton {
+open class AppleDownloadButton: UIButton {
 
     // MARK: - IBDesignable and IBInspectable
     @IBInspectable open var isDownloaded: Bool = false {
@@ -1240,19 +1240,19 @@ open class NFDownloadButton: UIButton {
 
     }
 
-    @IBInspectable open var style: String = NFDownloadButtonStyle.iOS.rawValue {
+    @IBInspectable open var style: String = AppleDownloadButtonStyle.iOS.rawValue {
 
         didSet {
 
-            if style == NFDownloadButtonStyle.macOS.rawValue {
+            if style == AppleDownloadButtonStyle.macOS.rawValue {
 
                 self.buttonStyle = .macOS
 
-            } else if style == NFDownloadButtonStyle.tvOS.rawValue {
+            } else if style == AppleDownloadButtonStyle.tvOS.rawValue {
 
                 self.buttonStyle = .tvOS
 
-            } else if style == NFDownloadButtonStyle.watchOS.rawValue {
+            } else if style == AppleDownloadButtonStyle.watchOS.rawValue {
 
                 self.buttonStyle = .watchOS
 
@@ -1268,7 +1268,7 @@ open class NFDownloadButton: UIButton {
 
     override open class var layerClass: AnyClass {
 
-        return NFDownloadButtonLayer.self
+        return AppleDownloadButtonLayer.self
 
     }
 
@@ -1281,7 +1281,7 @@ open class NFDownloadButton: UIButton {
 
     }
 
-    public init(frame: CGRect, isDownloaded: Bool = false, style: NFDownloadButtonStyle = .iOS, palette: Palette = Palette()) {
+    public init(frame: CGRect, isDownloaded: Bool = false, style: AppleDownloadButtonStyle = .iOS, palette: Palette = Palette()) {
 
         super.init(frame: frame)
 
@@ -1310,11 +1310,11 @@ open class NFDownloadButton: UIButton {
     // MARK: - Properties
     var keyPath: String = "toDownloadManipulable"
     open var palette: Palette = Palette()
-    open var delegate: NFDownloadButtonDelegate?
+    open var delegate: AppleDownloadButtonDelegate?
     open var downloadPercent: CGFloat = 0.0 {
         willSet {
 
-            guard let layer: NFDownloadButtonLayer = layer as? NFDownloadButtonLayer else { return }
+            guard let layer: AppleDownloadButtonLayer = layer as? AppleDownloadButtonLayer else { return }
 
             if newValue >= 1.0 {
 
@@ -1332,13 +1332,13 @@ open class NFDownloadButton: UIButton {
         }
     }
 
-    private var buttonStyle: NFDownloadButtonStyle?
+    private var buttonStyle: AppleDownloadButtonStyle?
 
-    open var downloadState: NFDownloadButtonState? {
+    open var downloadState: AppleDownloadButtonState? {
 
         willSet {
 
-            guard let newValue: NFDownloadButtonState = newValue else { return }
+            guard let newValue: AppleDownloadButtonState = newValue else { return }
 
             if !isDownloaded {
 
@@ -1400,8 +1400,8 @@ open class NFDownloadButton: UIButton {
         super.draw(layer, in: ctx)
 
         guard
-            let layer: NFDownloadButtonLayer = layer as? NFDownloadButtonLayer,
-            let buttonStyle: NFDownloadButtonStyle = buttonStyle
+            let layer: AppleDownloadButtonLayer = layer as? AppleDownloadButtonLayer,
+            let buttonStyle: AppleDownloadButtonStyle = buttonStyle
             else { return }
 
         let frame = CGRect(origin: CGPoint(x: 0, y: 0), size: layer.frame.size)
@@ -1453,7 +1453,7 @@ open class NFDownloadButton: UIButton {
     // MARK: - Functions
     private func resetManipulables() {
 
-        guard let layer: NFDownloadButtonLayer = layer as? NFDownloadButtonLayer else { return }
+        guard let layer: AppleDownloadButtonLayer = layer as? AppleDownloadButtonLayer else { return }
 
         layer.toDownloadManipulable = 0.0
         layer.rippleManipulable = 0.0
@@ -1482,7 +1482,7 @@ open class NFDownloadButton: UIButton {
     
     fileprivate func animate(duration: TimeInterval = 0, delay: TimeInterval = 0, from: CGFloat = 0, to: CGFloat = 1, keyPath: String) -> Void {
         
-        guard let layer: NFDownloadButtonLayer = layer as? NFDownloadButtonLayer else { return }
+        guard let layer: AppleDownloadButtonLayer = layer as? AppleDownloadButtonLayer else { return }
         
         self.keyPath = keyPath
         
@@ -1508,7 +1508,7 @@ open class NFDownloadButton: UIButton {
         
     }
     
-    private func updateManipulable(_ layer: NFDownloadButtonLayer, _ keyPath: String, _ value: CGFloat) {
+    private func updateManipulable(_ layer: AppleDownloadButtonLayer, _ keyPath: String, _ value: CGFloat) {
         
         switch keyPath {
             
@@ -1552,7 +1552,7 @@ open class NFDownloadButton: UIButton {
     
 }
 
-extension NFDownloadButton: CAAnimationDelegate {
+extension AppleDownloadButton: CAAnimationDelegate {
     
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         

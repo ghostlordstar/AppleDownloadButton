@@ -1,12 +1,9 @@
-## NFDownloadButton
+## AppleDownloadButton
 
 | || | |
 |:-:|:-:|:-:|:-:|
 | ![iOS](Images/iOS.gif) | ![watchOS](Images/watchOS.gif) | ![tvOS](Images/tvOS.gif)  | ![macOS](Images/macOS.gif) |
 
-[![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)](https://github.com/LeonardoCardoso/NFDownloadButton#requirements-and-details)
-[![CocoaPods](https://img.shields.io/badge/pod-v0.0.6-red.svg)](https://github.com/LeonardoCardoso/NFDownloadButton#cocoapods)
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/LeonardoCardoso/NFDownloadButton#carthage)
 
 > Revamped Download Button
 
@@ -17,8 +14,8 @@
 
 ## Requirements
 
-- iOS 8.0+
-- Swift 4.2+
+- iOS 9.0+
+- Swift 5.0+
 - Xcode 10.0+
 
 ## Installation
@@ -31,16 +28,16 @@
 $ gem install cocoapods
 ```
 
-> CocoaPods 1.1.0+ is required to build NFDownloadButton 0.0.6+.
+> CocoaPods 1.1.0+ is required to build AppleDownloadButton 0.0.6+.
 
-To integrate NFDownloadButton into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate AppleDownloadButton into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
-pod 'NFDownloadButton', '~> 0.0.6'
+pod 'AppleDownloadButton'
 ```
 
 Then, run the following command:
@@ -60,26 +57,26 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate NFDownloadButton into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate AppleDownloadButton into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "LeonardoCardoso/NFDownloadButton" ~> 0.0.6
+github "ghostlordstar/AppleDownloadButton"
 ```
 
 ### Manually
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate NFDownloadButton into your project manually.
+If you prefer not to use either of the aforementioned dependency managers, you can integrate AppleDownloadButton into your project manually.
 
 ## Usage
 
-You can use a `NFDownloadButton` on [Storyboards](#storyboard) or, if you want to do it programatically, you can create it just like you create a UIButton:
+You can use a `AppleDownloadButton` on [Storyboards](#storyboard) or, if you want to do it programatically, you can create it just like you create a UIButton:
 
 ```swift
-let downloadButton = NFDownloadButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+let downloadButton = AppleDownloadButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
 self.parentView.addSubview(downloadButton)
 ```
 
-`NFDownloadButton` has four states:
+`AppleDownloadButton` has four states:
 
 | State 1: To Download | State 2: Will Download | State 3: Ready to Download | State 4: Downloaded |
 |:-:|:-:|:-:|:-:|
@@ -103,7 +100,7 @@ When this value reaches 1.0, then `downloadState` is automatically changed to `.
 You can select the button as downloaded by default. All states will be overridden by `Downloaded` state and no animation will be performed. To do so, just add `isDownloaded` in its constructor, or set it up whenever you want.
 
 ```swift
-NFDownloadButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50), isDownloaded: true)
+AppleDownloadButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50), isDownloaded: true)
 ```
 ```swift
 downloadButton.isDownloaded = true
@@ -111,10 +108,10 @@ downloadButton.isDownloaded = true
 
 ### Style
 
-`NFDownloadButton` has four different styles of devices: `iOS`, `watchOS`, `tvOS`, `macOS`. Thus you can customize your final result. This option is only available on constructor.
+`AppleDownloadButton` has four different styles of devices: `iOS`, `watchOS`, `tvOS`, `macOS`. Thus you can customize your final result. This option is only available on constructor.
 
 ```swift
-NFDownloadButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50), isDownloaded: true,
+AppleDownloadButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50), isDownloaded: true,
     style: .iOS)
 ```
 | iOS | watchOS | tvOS | macOS |
@@ -126,7 +123,7 @@ NFDownloadButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50), isDownloaded:
 You also can customize the colors of the button on its constructor.
 
 ```swift
-NFDownloadButton(
+AppleDownloadButton(
     frame: wrapView.frame,
     isDownloaded: true,
     style: .iOS,
@@ -147,22 +144,22 @@ NFDownloadButton(
 You can watch changes of state by implementing the protocol:
 
 ```swift
-protocol NFDownloadButtonDelegate {
+protocol AppleDownloadButtonDelegate {
 
-    func stateChanged(button: NFDownloadButton, newState: NFDownloadButtonState)
+    func stateChanged(button: AppleDownloadButton, newState: AppleDownloadButtonState)
 
 }
 ```
 
 ### Storyboard
 
-Last but not least, you can customize `NFDownloadButton` properties right from Interface Builder or Storyboards. 
+Last but not least, you can customize `AppleDownloadButton` properties right from Interface Builder or Storyboards. 
 
 ![storyboard](Images/storyboard.png)
 
 ## License
 
-NFDownloadButton is released under the MIT license. See [LICENSE](https://github.com/LeonardoCardoso/NFDownloadButton/blob/master/LICENSE) for details.
+AppleDownloadButton is released under the MIT license. See [LICENSE](https://github.com/LeonardoCardoso/AppleDownloadButton/blob/master/LICENSE) for details.
 
 ### Follow me for the latest updates
 <a href="https://goo.gl/UC8B8o"><img src="https://i.imgur.com/pac7UMq.png/" width="179" height="26"></a>
